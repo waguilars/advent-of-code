@@ -13,10 +13,31 @@ fn main() {
 
     let mut increased_times = 0;
 
-    for i in 1..measurements.len() {
-        if measurements[i] > measurements[i - 1] {
+    // Part 1
+    // for i in 1..measurements.len() {
+    //     if measurements[i] > measurements[i - 1] {
+    //         increased_times += 1;
+    //     }
+    // }
+
+    // println!("increased times --> {}", increased_times);
+
+    // Part 2
+    let mut prev_sum = 0;
+    for i in 0..measurements.len() - 2 {
+        let sum = measurements[i] + measurements[i + 1] + measurements[i + 2];
+
+        if prev_sum == 0 {
+            prev_sum = sum;
+            continue;
+        }
+
+
+        if sum > prev_sum {
             increased_times += 1;
         }
+
+        prev_sum = sum;
     }
 
     println!("increased times --> {}", increased_times);
