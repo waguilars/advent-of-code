@@ -14,12 +14,16 @@ fn main() {
 
     let mut horizontal: u32 = 0;
     let mut depth: u32 = 0;
+    let mut aim: u32 = 0;
 
     for command in commands {
         match command.instruction.as_ref() {
-            "forward" => horizontal += command.steps,
-            "down" => depth +=  command.steps,
-            "up" => depth -= command.steps,
+            "forward" => {
+                horizontal += command.steps;
+                depth += aim * command.steps;
+            },
+            "down" => aim +=  command.steps,
+            "up" => aim -= command.steps,
             _ => {}
         }
     }
